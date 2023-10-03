@@ -24,7 +24,7 @@ const ListProducts = ({ data }) => {
                   className="h-48 w-full object-cover"
                 />
                 <div className="p-4">
-                  <h2 className="text-xl font-semibold">{product.name}</h2>
+                  <h2 className="text-xl font-semibold">{product.title}</h2>
                   <p className="mt-2 text-lg font-semibold">${product.price}</p>
                 </div>
               </div>
