@@ -3,7 +3,7 @@ import React from "react";
 const ProductModal = ({ product, onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="modal-container">
+      <div className="modal-container max-w-xl">
         {/* Modal content */}
         <div className="bg-white rounded-lg p-4">
           <h2 className="mb-2 text-xl font-semibold">{product.title}</h2>

@@ -46,6 +46,45 @@ app.post("/product/create", async (req, res) => {
   }
 });
 
+//For updating a product
+app.put("/product/update/:id", async (req, res) => {
+  try {
+    let { title, categories, description, price } = req.body;
+
+    //Parsing to avoid type errors
+    price = parseFloat(price);
+
+    const product = await prisma.product.update({
+      where: { id: parseInt(req.params.id) },
+      data: {
+        title,
+        categories,
+        description,
+        price,
+      },
+    });
+
+    res.status(200).send(product);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+//For deleting a product
+app.delete("/product/delete/:id", async (req, res) => {
+  try {
+    const product = await prisma.product.delete({
+      where: { id: parseInt(req.params.id) },
+    });
+
+    res.status(200).send("deleted");
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 //For getting all the products
 app.get("/products", async (req, res) => {
   try {
