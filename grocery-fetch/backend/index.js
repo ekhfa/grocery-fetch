@@ -23,5 +23,44 @@ app.get("/hello", (req, res) => {
   }
 });
 
+app.post("/product/create", async (req, res) => {
+  try {
+    let { title, categories, description, price, images } = req.body;
+
+    price = parseFloat(price);
+
+    const product = await prisma.product.create({
+      data: {
+        title,
+        categories,
+        description,
+        price,
+        images,
+      },
+    });
+
+    res.status(201).send(product);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+//For getting all the products
+app.get("/products", async (req, res) => {
+  try {
+    const products = await prisma.product.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    res.status(200).send(products);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 const PORT = process.env.PORT || 9090;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));

@@ -18,8 +18,8 @@
     "next": "latest",
     "postgres": "^3.3.5",
     "prisma": "^5.3.1",
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-star-ratings": "^2.3.0"
   },
   "devDependencies": {

@@ -1,13 +1,18 @@
-import React from "react";
-import Filters from "./layouts/Filter";
-import productsData from "./products.json";
+import React, { useEffect, useState } from "react";
 
-const ListProducts = () => {
+const ListProducts = ({ data }) => {
+  const [products, setProducts] = useState(data);
+
+  // Use useEffect to update products when data changes
+  useEffect(() => {
+    setProducts(data);
+  }, [data]);
+
   return (
     <section className="py-12">
       <div className="max-w-screen-xl container mx-auto px-4">
         <div className="md:flex-row -mx-4 flex flex-wrap">
-          {productsData.map(product => (
+          {products.map(product => (
             <div
               key={product.id}
               className="bg-white md:w-1/2 lg:w-1/3 xl:w-1/4 mb-4 w-full px-4"
@@ -20,7 +25,6 @@ const ListProducts = () => {
                 />
                 <div className="p-4">
                   <h2 className="text-xl font-semibold">{product.name}</h2>
-                  <p className="text-gray-600">{product.description}</p>
                   <p className="mt-2 text-lg font-semibold">${product.price}</p>
                 </div>
               </div>
