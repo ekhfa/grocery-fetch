@@ -14,5 +14,14 @@ app.use(
   })
 );
 
+app.get("/hello", (req, res) => {
+  try {
+    res.send({ msg: "hello" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 const PORT = process.env.PORT || 9090;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
